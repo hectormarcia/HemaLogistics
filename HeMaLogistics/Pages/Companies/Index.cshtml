@@ -1,0 +1,110 @@
+﻿@page
+@model HeMaLogistics.Pages.Companies.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<div class="border backgroundWhite">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Company List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="Create" class="btn btn-info">
+                <i class="fas fa-plus"></i>&nbsp;New Company
+            </a>
+        </div>
+    </div>
+</div>
+<br />
+
+<div> 
+    <div class="border backgroundWhite">
+        @if (Model.CompanyList.Count == 0)
+        {
+            <p>No Company exists. Please create a new Company</p>
+        }
+        else
+        {
+        <div>
+            <table class="table table-striped border">
+                <tr>
+                    <th class="text-indigo">
+                        @Html.DisplayNameFor(m => m.CompanyList[0].Name)
+                    </th>
+                    <th class="text-indigo">
+                        @Html.DisplayNameFor(m => m.CompanyList[0].StreetAddress)
+                    </th>
+                    <th class="text-indigo">
+                        @Html.DisplayNameFor(m => m.CompanyList[0].City)
+                    </th>
+                    <th class="text-indigo">
+                        @Html.DisplayNameFor(m => m.CompanyList[0].PostalCode)
+                    </th>
+                    <th class="text-indigo">
+                        @Html.DisplayNameFor(m => m.CompanyList[0].State)
+                    </th>
+                    <th class="text-indigo">
+                        @Html.DisplayNameFor(m => m.CompanyList[0].Contact)
+                    </th>
+                    <th class="text-indigo">
+                        @Html.DisplayNameFor(m => m.CompanyList[0].Phone)
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model.CompanyList)
+                {
+            <tr>
+                <td class="fit">
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(m => item.StreetAddress)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(m => item.City)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(m => item.PostalCode)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(m => item.State)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(m => item.Contact)
+                </td>
+                <td class="fit">
+                    @Html.DisplayFor(m => item.Phone)
+                </td>
+                <td class="fit">
+                    <a asp-page="../CompanySites/Index" asp-route-CompanyId="@item.CompanyId" style="text-decoration:none;">
+                        View Sites
+                    </a>                   
+                </td>
+                <td style="width:150px;">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.CompanyId">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        &nbsp;
+                        <a class="btn btn-success text-white" asp-page="Details" asp-route-Id="@item.CompanyId">
+                            <i class="far fa-list-alt"></i>
+                        </a>
+                        &nbsp;
+                        <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.CompanyId">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+                }
+            </table>
+        </div>
+        }
+    </div>
+
+</div>

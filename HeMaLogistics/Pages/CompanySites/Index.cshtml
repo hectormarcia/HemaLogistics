@@ -1,0 +1,140 @@
+﻿@page
+@model HeMaLogistics.Pages.CompanySites.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info py-2">Company Sites</h2>
+
+<div class="container backgroundWhite">
+    <div class="card">
+        <div class="card-header bg-dark text-light ml-0 row container">
+            <div class="col-6">
+                <i class="far fa-building"></i>
+            </div>
+            <div class="col-6 text-right">
+                <a asp-page="../Companies/Index" class="btn btn-outline-info btn-sm">Back to Company List</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row" style="padding-bottom:40px; padding-top:20px;">
+                <div class="col-md-3">
+                    <p>
+                        <a asp-page="Create" asp-route-CompanyId="@Model.SiteAndCompanyVM.CompanyObj.CompanyId" class="btn btn-info form-control">
+                            <i class="fas fa-plus"></i> &nbsp;Add New Site
+                        </a>
+                    </p>
+                </div>
+                <div class="col-md-6 offset-md-3">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="SiteAndCompanyVM.CompanyObj.Name"></label>
+                        </div>
+                        <div class="col-sm-8" style="padding-bottom:5px;">
+                            <input asp-for="SiteAndCompanyVM.CompanyObj.Name" disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="SiteAndCompanyVM.CompanyObj.Contact"></label>
+                        </div>
+                        <div class="col-sm-8" style="padding-bottom:5px;">
+                            <input asp-for="SiteAndCompanyVM.CompanyObj.Contact" disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="SiteAndCompanyVM.CompanyObj.Phone"></label>
+                        </div>
+                        <div class="col-sm-8" style="padding-bottom:5px;">
+                            <input asp-for="SiteAndCompanyVM.CompanyObj.Phone" disabled class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (Model.SiteAndCompanyVM.CompanySites.Count() == 0)
+            {
+                <p>
+                    No Sites exist for this Company yet. Please create a new Site...
+                </p>
+            }
+            else
+            {
+                <table class="table table-striped border">
+                    <tr>
+                        <th class="text-indigo">
+                            @Html.DisplayNameFor(m => m.SiteAndCompanyVM.CompanySites.FirstOrDefault().Name)
+                        </th>
+                        <th class="text-indigo">
+                            @Html.DisplayNameFor(m => m.SiteAndCompanyVM.CompanySites.FirstOrDefault().StreetAddress)
+                        </th>
+                        <th class="text-indigo">
+                            @Html.DisplayNameFor(m => m.SiteAndCompanyVM.CompanySites.FirstOrDefault().City)
+                        </th>
+                        <th class="text-indigo">
+                            @Html.DisplayNameFor(m => m.SiteAndCompanyVM.CompanySites.FirstOrDefault().PostalCode)
+                        </th>
+                        <th class="text-indigo">
+                            @Html.DisplayNameFor(m => m.SiteAndCompanyVM.CompanySites.FirstOrDefault().State)
+                        </th>
+                        <th class="text-indigo">
+                            @Html.DisplayNameFor(m => m.SiteAndCompanyVM.CompanySites.FirstOrDefault().Contact)
+                        </th>
+                        <th class="text-indigo">
+                            @Html.DisplayNameFor(m => m.SiteAndCompanyVM.CompanySites.FirstOrDefault().Phone)
+                        </th>                       
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.SiteAndCompanyVM.CompanySites)
+                    {
+                <tr>
+                    <td class="fit">
+                        @Html.DisplayFor(m => item.Name)
+                    </td>
+                    <td class="fit">
+                        @Html.DisplayFor(m => item.StreetAddress)
+                    </td>
+                    <td class="fit">
+                        @Html.DisplayFor(m => item.City)
+                    </td>
+                    <td class="fit">
+                        @Html.DisplayFor(m => item.PostalCode)
+                    </td>
+                    <td class="fit">
+                        @Html.DisplayFor(m => item.State)
+                    </td>
+                    <td class="fit">
+                        @Html.DisplayFor(m => item.Contact)
+                    </td>
+                    <td class="fit">
+                        @Html.DisplayFor(m => item.Phone)
+                    </td>                    
+                    <td></td>
+                    <td></td>
+
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.SiteId">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            &nbsp;
+                            <a class="btn btn-success text-white" asp-page="Details" asp-route-Id="@item.SiteId">
+                                <i class="far fa-list-alt"></i>
+                            </a>
+                            &nbsp;
+                            <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.SiteId">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                    }
+                </table>
+            }
+        </div>
+    </div>
+</div>

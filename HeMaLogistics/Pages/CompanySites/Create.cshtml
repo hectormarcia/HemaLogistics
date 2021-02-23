@@ -1,0 +1,104 @@
+﻿@page
+@model HeMaLogistics.Pages.CompanySites.CreateModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Add New Site</h2>
+<br />
+<form method="post">
+    <div class="border backgroundWhite">
+        <input hidden asp-for="CompanySite.CompanyId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="CompanySite.Name"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="CompanySite.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="CompanySite.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="CompanySite.StreetAddress"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="CompanySite.StreetAddress" class="form-control" />
+            </div>
+            <span asp-validation-for="CompanySite.StreetAddress" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="CompanySite.City"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="CompanySite.City" class="form-control" />
+            </div>
+            <span asp-validation-for="CompanySite.City" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="CompanySite.PostalCode"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="CompanySite.PostalCode" class="form-control" />
+            </div>
+            <span asp-validation-for="CompanySite.PostalCode" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="CompanySite.State"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="CompanySite.State" class="form-control" />
+            </div>
+            <span asp-validation-for="CompanySite.State" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="CompanySite.Contact"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="CompanySite.Contact" class="form-control" />
+            </div>
+            <span asp-validation-for="CompanySite.Contact" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="CompanySite.Phone"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="CompanySite.Phone" class="form-control" />
+            </div>
+            <span asp-validation-for="CompanySite.Phone" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="CompanySite.DeliveryDate"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="CompanySite.DeliveryDate" class="form-control" />
+            </div>
+            <span asp-validation-for="CompanySite.DeliveryDate" asp-items="Html.GetEnumSelectList<DayOfWeek>()" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-info form-control" value="Create" />
+                    </div>
+                    <div class="col-6">
+                        <a asp-page="index" asp-route-CompanyId="@Model.CompanySite.CompanyId" class="btn btn-success form-control">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptspartial"); }
+}
